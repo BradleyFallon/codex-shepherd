@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "path": "docs/architecture.md",
+      "role": "primary"
+    },
+    {
+      "path": "docs/requirements.md",
+      "role": "authoritative"
+    },
+    {
+      "path": "docs/constraints.md",
+      "role": "constraints"
+    }
+  ]
+}

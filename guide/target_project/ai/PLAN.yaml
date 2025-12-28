@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "objectives": [
+    {
+      "id": "obj-1",
+      "source": "design/requirements.md",
+      "status": "complete"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "objective": "obj-1",
+      "derived_from": "design/requirements.md",
+      "status": "done",
+      "success_criteria": [
+        "Planner can select and complete a no-op task in test mode"
+      ]
+    }
+  ]
+}

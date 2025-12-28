@@ -7,6 +7,7 @@ import shlex
 import subprocess
 import threading
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Optional
 
 
@@ -35,12 +36,20 @@ class MCPResult:
 class MCPClient:
     """Executes a single task by spawning the configured MCP command."""
 
-    def __init__(self, command: str, startup_timeout_seconds: int, task_timeout_seconds: int) -> None:
+    def __init__(
+        self,
+        command: str,
+        startup_timeout_seconds: int,
+        task_timeout_seconds: int,
+        *,
+        cwd: Optional[Path] = None,
+    ) -> None:
         if not isinstance(command, str) or not command.strip():
             raise MCPProcessError("MCP command must be a non-empty string.")
         self.command = command
         self.startup_timeout_seconds = startup_timeout_seconds
         self.task_timeout_seconds = task_timeout_seconds
+        self.cwd = cwd
 
     def run_task(self, payload: dict[str, Any]) -> MCPResult:
         if not isinstance(payload, dict):
@@ -70,6 +79,7 @@ class MCPClient:
                 stderr=subprocess.PIPE,
                 text=True,
                 bufsize=1,
+                cwd=str(self.cwd) if self.cwd is not None else None,
             )
         except OSError as exc:
             raise MCPProcessError(f"Failed to start MCP command: {exc}") from exc

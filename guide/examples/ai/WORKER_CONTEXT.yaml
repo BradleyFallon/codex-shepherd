@@ -1,0 +1,12 @@
+{
+  "include": [
+    "docs/**",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "exclude": [
+    "docs/drafts/**",
+    "docs/obsolete/**"
+  ],
+  "notes": "Context only. Conflicts must defer to authoritative sources."
+}

@@ -40,15 +40,8 @@ def main() -> None:
     store.load_sources()
 
     planner = Planner(store)
-    max_retries_per_task = min(config.max_retries_per_task, 1)
-    if config.max_retries_per_task > max_retries_per_task:
-        logger.warning(
-            "max_retries_per_task=%s exceeds safety limit; clamped to %s.",
-            config.max_retries_per_task,
-            max_retries_per_task,
-        )
     retry_tracker = RetryTracker(
-        max_retries_per_task=max_retries_per_task,
+        max_retries_per_task=config.max_retries_per_task,
         max_consecutive_failures=config.max_consecutive_failures,
     )
 
@@ -91,6 +84,7 @@ def _run_loop(
             config.mcp_command,
             config.startup_timeout_seconds,
             config.task_timeout_seconds,
+            cwd=project_root,
         )
         payload = {"task": active_task}
 

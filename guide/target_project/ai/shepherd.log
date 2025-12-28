@@ -1,0 +1,4 @@
+2025-12-27 20:33:27,375 INFO Shepherd starting.
+2025-12-27 20:33:27,376 WARNING max_retries_per_task=2 exceeds safety limit; clamped to 1.
+2025-12-27 20:33:27,402 INFO No pending tasks available. Stopping.
+2025-12-27 20:33:27,402 INFO Shepherd exiting.
